@@ -18,7 +18,6 @@ except:
     print("Booted without arduino library.")
     pass
 
-
 token = "bot token here"
 game = "Google: The Game"
 
