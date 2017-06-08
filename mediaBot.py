@@ -18,7 +18,7 @@ except:
     pass
 
 
-token = "MzIwODY5NjAwNDUzNzIyMTEy.DBV5hQ.E8X1gLcD5Cocpry9opvoah3HZ9g"
+token = "your bot token here"
 game = "Google: The Game"
 
 media_bot = Bot(command_prefix="?")
