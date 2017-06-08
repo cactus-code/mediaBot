@@ -18,7 +18,7 @@ except:
     print("Booted without arduino library.")
     pass
 
-token = "bot token here"
+token = "your bot token here"
 game = "Google: The Game"
 
 media_bot = Bot(command_prefix="?")

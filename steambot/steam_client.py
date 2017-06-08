@@ -9,10 +9,7 @@ def get_user_name(STEAM_ID):
     name = str(profile.persona)
     return name
 
-def list_user_games(LINK):
-    user = interface('ISteamUser').ResolveVanityURL(key=API_KEY,vanityurl=LINK)
-    STEAM_ID = user['response']['steamid']
-    print(STEAM_ID)
+def list_user_games(STEAM_ID):
     games = interface('IPlayerService').GetOwnedGames(steamid=STEAM_ID, include_appinfo=1)
     game_count = games['response']['game_count']
     user_games = []
