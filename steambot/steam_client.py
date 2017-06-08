@@ -4,6 +4,11 @@ from steam.api import interface
 API_KEY = 'E0CA4AA7D95371E3F5944D5155FCB245'
 steam.api.key.set(API_KEY)
 
+def get_user_name(STEAM_ID):
+    profile = steam.user.profile(STEAM_ID)
+    name = str(profile.persona)
+    return name
+
 def list_user_games(STEAM_ID):
     games = interface('IPlayerService').GetOwnedGames(steamid=STEAM_ID, include_appinfo=1)
     game_count = games['response']['game_count']
@@ -16,3 +21,4 @@ def list_user_games(STEAM_ID):
     for i in range(0,len(replace)):
         user_games = user_games.replace(replace[i],'')
     return user_games
+

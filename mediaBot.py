@@ -10,6 +10,7 @@ load_opus_lib()
 from musicbot.downloader import search
 from musicbot.downloader import download
 from steambot.steam_client import list_user_games
+from steambot.steam_client import get_user_name
 try: #Tries to import arduino module and connect to board
     from arduinobot.main import notification_blink
     print("Booted with arduino library.")
@@ -18,7 +19,7 @@ except:
     pass
 
 
-token = "MzIwODY5NjAwNDUzNzIyMTEy.DBV5hQ.E8X1gLcD5Cocpry9opvoah3HZ9g"
+token = "bot token here"
 game = "Google: The Game"
 
 media_bot = Bot(command_prefix="?")
@@ -55,6 +56,7 @@ async def on_message(message):
             content = message.content
             content = content.replace('?steam_list_games ','')
             games_list = list_user_games(content)
-            await media_bot.send_message(message.channel,(message.author).mention + ' Games owned by ID: {} are: {}'.format(content,games_list))
+            username = get_user_name(content)
+            await media_bot.send_message(message.channel,(message.author).mention + ' Games owned by Steam User: {} are: {}'.format(username,games_list))
            
 media_bot.run(token)
