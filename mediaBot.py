@@ -1,5 +1,3 @@
-import urllib.request
-import urllib.parse
 import re
 import discord
 from discord.ext.commands import Bot
