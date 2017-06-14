@@ -16,7 +16,7 @@ except:
     print("Booted without arduino library.")
     pass
 
-token = "your bot token here"
+token = "MzIwODY5NjAwNDUzNzIyMTEy.DB074Q.FMXkk0_CnuBuvno3eqwe0d2dnUs"
 game = "Google: The Game"
 
 media_bot = Bot(command_prefix="?")
@@ -42,11 +42,11 @@ async def on_message(message):
             pass
         if message.content.startswith('?play'):
             video = search(message.content)
-            download(video)
-            #author_channel = (message.author).voice_channel
-            #voice = await media_bot.join_voice_channel(author_channel)
-            #player = await voice.create_ytdl_player(link)
-            #player.start()
+            #download(video)
+            author_channel = (message.author).voice_channel
+            voice = await media_bot.join_voice_channel(author_channel)
+            player = await voice.create_ytdl_player(video)
+            player.start()
         if message.content.startswith('?shutdown'):
             await media_bot.close()
         if message.content.startswith('?steam_list_games'):
