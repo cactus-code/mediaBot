@@ -2,5 +2,5 @@ import serial
 import time
 ser = serial.Serial("/dev/cu.usbmodemFD121",9600)
 
-def notification_blink():
-    ser.write(b'a')
+def set_rgb_led(red_val,green_val,blue_val):
+    ser.write(b'100')

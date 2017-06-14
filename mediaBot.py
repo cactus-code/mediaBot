@@ -10,7 +10,7 @@ from musicbot.downloader import download
 from steambot.steam_client import list_user_games
 from steambot.steam_client import get_user_name
 try: #Tries to import arduino module and connect to board
-    from arduinobot.main import notification_blink
+    from arduinobot.main import set_rgb_led
     print("Booted with arduino library.")
 except:
     print("Booted without arduino library.")
@@ -33,13 +33,16 @@ async def on_ready():
     print('Playing:{}'.format(game))
     await media_bot.change_presence(game=discord.Game(name=game))
 
+@media_bot.command(pass_context=True)
+async def rgb(ctx,*args):
+    red = int(args[0])
+    green = int(args[1])
+    blue = int(args[2])
+    set_rgb_led(red,green,blue)
+
 @media_bot.event
 async def on_message(message):
     if not (message.author).bot:
-        try:
-            notification_blink()
-        except:
-            pass
         if message.content.startswith('?play'):
             video = search(message.content)
             #download(video)
@@ -55,5 +58,6 @@ async def on_message(message):
             games_list = list_user_games(content)
             username = get_user_name(content)
             await media_bot.send_message(message.channel,(message.author).mention + ' Games owned by Steam User: {} are: {}'.format(username,games_list))
+    await media_bot.process_commands(message)
            
 media_bot.run(token)
